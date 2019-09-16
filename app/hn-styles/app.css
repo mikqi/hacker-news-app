@@ -44,6 +44,7 @@ a {
   font-weight: 300;
   letter-spacing: 0.075em;
   margin-right: 1.8em;
+  cursor: pointer;
 }
 
 .header a:hover {
@@ -176,6 +177,7 @@ a {
   transition: all 0.3s ease;
   border-radius: 0.375rem;
   margin-bottom: 10px;
+  list-style-type: none;
 }
 
 .news-item:hover {
