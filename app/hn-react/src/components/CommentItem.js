@@ -2,18 +2,18 @@ import React from 'react'
 
 const CommentItem = () => {
   return (
-    <li class="comment">
-      <div class="by">
-        <a href="#/user/{{@comment.user}}" class="">
+    <li className="comment">
+      <div className="by">
+        <a href="#/user/{{@comment.user}}" className="">
           user
         </a>
         timeago
       </div>
-      <div class="text"> Content </div>
-      <div class="toggle">
+      <div className="text"> Content </div>
+      <div className="toggle">
         <a>[-]</a>
       </div>
-      <ul class="comment-children">comments</ul>
+      <ul className="comment-children">comments</ul>
     </li>
   )
 }

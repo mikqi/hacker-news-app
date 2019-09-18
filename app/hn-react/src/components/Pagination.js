@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Pagination = () => {
+const Pagination = ({ changePage, page }) => {
   return (
-    <div class="news-list-nav">
-      <a>&lt; Prev</a>1<a>Next &gt;</a>
+    <div className="news-list-nav">
+      <a onClick={() => changePage('prev')}>&lt; Prev</a>
+      {page}
+      <a onClick={() => changePage('next')}>Next &gt;</a>
     </div>
   )
 }

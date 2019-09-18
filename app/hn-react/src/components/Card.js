@@ -1,32 +1,40 @@
 import React from 'react'
 
-function Card() {
+function Card({ title, points, user, time, time_ago, comments_count, url, domain }) {
   return (
-    <li class="news-item">
-      <span class="score">points</span>
-      <span class="title">
-        <a href="url" target="_blank" rel="noopener">
-          title
+    <li className="news-item">
+      <span className="score">{points}</span>
+      <span className="title">
+        <a href={url} target="_blank" rel="noopener">
+          {title}
         </a>
-        <span class="darkText">title</span>
-        <span class="host">domain</span>
+        {/* <span className="darkText">{title}</span> */}
+        <span className="host"> {domain}</span>
       </span>
       <br />
-      <span class="meta">
-        <span class="by">
-          by{' '}
-          <a href="#/user/user" class="">
-            user
-          </a>
-        </span>
-        <span class="time">time_ago</span>
-        <span class="comments-link">
-          {' '}
-          |{' '}
-          <a href="#/item/id" class="">
-            comments
-          </a>
-        </span>
+      <span className="meta">
+        {user ? (
+          <span className="by">
+            by{' '}
+            <a href="#/user/user" className="">
+              {user}
+            </a>
+          </span>
+        ) : (
+          ''
+        )}
+        <span className="time"> {time_ago}</span>
+        {comments_count ? (
+          <span className="comments-link">
+            {' '}
+            |{' '}
+            <a href="#/item/id" className="">
+              comments: {comments_count}
+            </a>
+          </span>
+        ) : (
+          ''
+        )}
       </span>
     </li>
   )
