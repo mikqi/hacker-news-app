@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { Router, Redirect } from '@reach/router'
+
+import { PageContext } from './contexts/PageContext'
 
 import Header from './components/Header'
 import CommentList from './components/CommentList'
@@ -9,13 +11,16 @@ import UserInfo from './components/UserInfo'
 import 'hn-styles/app.css'
 
 function App(props) {
-  const [state, setState] = useState({ menus: [] })
+  const { menu, dispatch } = useContext(PageContext)
 
   async function fetchMenus() {
     try {
       const { data } = await axios.get('https://api.hnpwa.com/v0')
       const menus = data.endpoints.filter(menu => menu.maxPages)
-      setState({ menus })
+      dispatch({
+        type: 'SET_MENU',
+        payload: menus
+      })
     } catch (error) {
       console.error(error)
     }
@@ -23,12 +28,11 @@ function App(props) {
 
   useEffect(() => {
     fetchMenus()
-    console.log(props)
   }, [])
 
   return (
     <>
-      <Header menus={state.menus} />
+      <Header menus={menu} />
       <div className="news-view">
         <Router>
           <Redirect noThrow from="/" to="news" />
