@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import { PageContext } from '../contexts/PageContext'
 import Card from './Card'
 import Pagination from './Pagination'
 
 const CardList = ({ type }) => {
-  const [news, setNews] = useState([])
-  const [page, setPage] = useState(1)
+  const { news, page, dispatch } = useContext(PageContext)
 
   useEffect(() => {
     fetchNews()
-      .then(({ data }) => setNews(data))
+      .then(({ data }) => dispatch({ type: 'SET_NEWS', payload: data }))
       .catch(err => new Error(err))
   }, [type, page])
 
@@ -17,17 +17,9 @@ const CardList = ({ type }) => {
     return await axios.get(`https://api.hnpwa.com/v0/${type}/${page}.json`)
   }
 
-  function changePage(state) {
-    if (state === 'next') {
-      setPage(page + 1)
-    } else if (page > 1) {
-      setPage(page - 1)
-    }
-  }
-
   return (
     <>
-      <Pagination page={page} changePage={changePage} />
+      <Pagination />
       <div className="news-list">
         <div className="view">
           {news.map(n => (
