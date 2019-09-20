@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from '@reach/router'
 
-function Card({ title, points, user, time, time_ago, comments_count, url, domain }) {
+function Card({ title, points, user, id, time_ago, comments_count, url, domain }) {
   return (
     <li className="news-item">
       <span className="score">{points}</span>
@@ -26,9 +26,9 @@ function Card({ title, points, user, time, time_ago, comments_count, url, domain
           <span className="comments-link">
             {' '}
             |{' '}
-            <a href="#/item/id" className="">
+            <Link to={`/comments/${id}`} state={{ title, points, user, time_ago, url, domain }}>
               comments: {comments_count}
-            </a>
+            </Link>
           </span>
         ) : (
           ''
