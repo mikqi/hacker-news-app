@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from '@reach/router'
 
 function Card({ title, points, user, time, time_ago, comments_count, url, domain }) {
   return (
@@ -15,10 +16,7 @@ function Card({ title, points, user, time, time_ago, comments_count, url, domain
       <span className="meta">
         {user ? (
           <span className="by">
-            by{' '}
-            <a href="#/user/user" className="">
-              {user}
-            </a>
+            by <Link to={`/user/${user}`}>{user}</Link>
           </span>
         ) : (
           ''

@@ -10,7 +10,7 @@ import CardList from './components/CardList'
 import UserInfo from './components/UserInfo'
 import 'hn-styles/app.css'
 
-function App(props) {
+function App() {
   const { menu, dispatch } = useContext(PageContext)
 
   async function fetchMenus() {
@@ -37,7 +37,7 @@ function App(props) {
         <Router>
           <Redirect noThrow from="/" to="news" />
           <CardList path="/:type" />
-          <CommentList path="/comments" />
+          <CommentList path="/comments/:id" />
           <UserInfo path="/user/:id" />
         </Router>
       </div>
