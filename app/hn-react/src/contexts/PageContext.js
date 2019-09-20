@@ -13,7 +13,7 @@ const initialAppState = {
 /**
  * @param {initialAppState} state
  * @param {Object} action
- * @param {('NEXT_PAGE'|'PREV_PAGE'|'SET_NEWS'|'TOGGLE_LOADING'|'SET_MENU')} action.type
+ * @param {('NEXT_PAGE'|'PREV_PAGE'|'RESET_PAGE'|'SET_NEWS'|'TOGGLE_LOADING'|'SET_MENU')} action.type
  * @param {initialAppState} action.payload
  */
 const appReducer = (state, action) => {
@@ -22,6 +22,8 @@ const appReducer = (state, action) => {
       return { ...state, page: state.page + 1 }
     case 'PREV_PAGE':
       return { ...state, page: state.page > 1 ? state.page - 1 : state.page }
+    case 'RESET_PAGE':
+      return { ...state, page: 1 }
     case 'TOGGLE_LOADING':
       return { ...state, loading: !state.loading }
     case 'SET_NEWS':
