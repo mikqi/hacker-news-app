@@ -10,11 +10,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('news', ['RESET_PAGE']),
+    ...mapMutations('news', ['RESET_PAGE', 'SET_TOPIC']),
     handleClick (topic) {
       let currentUri = window.location.pathname
       if (!currentUri.includes(topic)) {
         this.RESET_PAGE()
+        this.SET_TOPIC(topic)
       }
     }
   },

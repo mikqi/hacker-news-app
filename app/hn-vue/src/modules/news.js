@@ -4,7 +4,8 @@ const initialState = () => ({
   news: [],
   loading: false,
   menu: [],
-  page: 1
+  page: 1,
+  topic: 'news'
 })
 
 const mutations = {
@@ -13,14 +14,15 @@ const mutations = {
   RESET_PAGE: state => (state.page = 1),
   TOGGLE_LOADING: state => (state.loading = !state.loading),
   SET_NEWS: (state, news) => (state.news = news),
-  SET_MENU: (state, menu) => (state.menu = menu)
+  SET_MENU: (state, menu) => (state.menu = menu),
+  SET_TOPIC: (state, topic) => (state.topic = topic)
 }
 
 const actions = {
-  async FETCH_NEWS ({ commit, state }, { type }) {
+  async FETCH_NEWS ({ commit, state }) {
     commit('TOGGLE_LOADING')
     try {
-      const { data } = await axios.get(`https://api.hnpwa.com/v0/${type}/${state.page}.json`)
+      const { data } = await axios.get(`https://api.hnpwa.com/v0/${state.topic}/${state.page}.json`)
       commit('SET_NEWS', data)
     } finally {
       commit('TOGGLE_LOADING')

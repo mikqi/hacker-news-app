@@ -1,4 +1,4 @@
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapMutations } from 'vuex'
 import Card from '../components/Card'
 import Loading from '../components/Loading'
 
@@ -9,20 +9,26 @@ export default {
     Loading
   },
   computed: {
-    ...mapState('news', ['news', 'loading'])
+    ...mapState('news', ['news', 'loading', 'page'])
   },
   watch: {
-    '$route.params.topic': function (newVal, oldVal) {
+    '$route.params.topic': {
+      handler: function (newVal, oldVal) {
+        if (newVal === oldVal) return
+        this.SET_TOPIC(newVal)
+        this.FETCH_NEWS()
+      },
+      immediate: true
+    },
+
+    page: function (newVal, oldVal) {
       if (newVal === oldVal) return
-      this.FETCH_NEWS({ type: newVal })
+      this.FETCH_NEWS()
     }
   },
-  mounted () {
-    console.log(this)
-    this.FETCH_NEWS({ type: 'news' })
-  },
   methods: {
-    ...mapActions('news', ['FETCH_NEWS'])
+    ...mapActions('news', ['FETCH_NEWS']),
+    ...mapMutations('news', ['SET_TOPIC'])
   },
   render () {
     return <div>{this.loading ? <Loading /> : this.news.map(n => <Card key={n.id} {...n} />)}</div>
