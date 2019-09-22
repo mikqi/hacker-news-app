@@ -1,5 +1,24 @@
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'Header',
+  props: {
+    menu: {
+      type: Array,
+      required: true,
+      default: () => []
+    }
+  },
+  methods: {
+    ...mapMutations('news', ['RESET_PAGE']),
+    handleClick (topic) {
+      let currentUri = window.location.pathname
+      if (!currentUri.includes(topic)) {
+        console.log('awww')
+        this.RESET_PAGE()
+      }
+    }
+  },
   render () {
     return (
       <header ref="root" class="header" style={{ backgroundColor: '#3eaf7c' }}>
@@ -10,7 +29,11 @@ export default {
             </a>
           </div>
           <div class="fadein">
-            <a>news</a>
+            {this.menu.map((m, idx) => (
+              <router-link to={`/${m.topic}`} key={idx}>
+                <span onClick={() => this.handleClick(m.topic)}>{m.topic}</span>
+              </router-link>
+            ))}
           </div>
         </nav>
       </header>
