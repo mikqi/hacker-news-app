@@ -8,7 +8,7 @@ import Header from './components/Header'
 import CommentList from './components/CommentList'
 import CardList from './components/CardList'
 import UserInfo from './components/UserInfo'
-import 'hn-styles/app.css'
+import 'hn-styles/index.css'
 
 function App() {
   const { menu, dispatch } = useContext(PageContext)
