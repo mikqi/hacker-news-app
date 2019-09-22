@@ -13,26 +13,26 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import Header from "./components/Header";
-import Pagination from "./components/Pagination";
+import { mapActions, mapState } from 'vuex'
+import Header from './components/Header'
+import Pagination from './components/Pagination'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Header,
     Pagination
   },
   computed: {
-    ...mapState("news", ["menu"])
+    ...mapState('news', ['menu'])
   },
-  mounted() {
-    this.FETCH_MENU();
+  mounted () {
+    this.FETCH_MENU()
   },
   methods: {
-    ...mapActions("news", ["FETCH_MENU"])
+    ...mapActions('news', ['FETCH_MENU'])
   }
-};
+}
 </script>
 
 <style>

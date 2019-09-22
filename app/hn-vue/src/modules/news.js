@@ -9,7 +9,7 @@ const initialState = () => ({
 
 const mutations = {
   NEXT_PAGE: state => (state.page = state.page + 1),
-  PREV_PAGE: state => (state.page = state.page - 1),
+  PREV_PAGE: state => (state.page = state.page > 1 ? state.page - 1 : state.page),
   RESET_PAGE: state => (state.page = 1),
   TOGGLE_LOADING: state => (state.loading = !state.loading),
   SET_NEWS: (state, news) => (state.news = news),
@@ -18,7 +18,6 @@ const mutations = {
 
 const actions = {
   async FETCH_NEWS ({ commit, state }, { type }) {
-    console.log('FETCH_NEWS')
     commit('TOGGLE_LOADING')
     try {
       const { data } = await axios.get(`https://api.hnpwa.com/v0/${type}/${state.page}.json`)

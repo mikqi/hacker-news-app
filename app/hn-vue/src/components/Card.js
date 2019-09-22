@@ -4,7 +4,7 @@ export default {
   functional: true,
   name: 'Card',
   render (_h, context) {
-    const { title, points, user, id, time_ago, comments_count, url, domain } = context.props
+    const { title, points, user, id, time_ago, comments_count, url, domain } = context.data
     return (
       <li class="news-item">
         <span class="score">{points}</span>

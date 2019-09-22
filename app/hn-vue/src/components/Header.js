@@ -14,7 +14,6 @@ export default {
     handleClick (topic) {
       let currentUri = window.location.pathname
       if (!currentUri.includes(topic)) {
-        console.log('awww')
         this.RESET_PAGE()
       }
     }
